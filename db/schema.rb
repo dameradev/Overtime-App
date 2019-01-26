@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_26_185957) do
+ActiveRecord::Schema.define(version: 2019_01_26_195139) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "posts", force: :cascade do |t|
+    t.date "date"
+    t.text "rationale"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -21,7 +28,7 @@ ActiveRecord::Schema.define(version: 2019_01_26_185957) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "frist_name"
+    t.string "first_name"
     t.string "last_name"
     t.string "type"
     t.index ["email"], name: "index_users_on_email", unique: true
