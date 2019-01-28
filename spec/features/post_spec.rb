@@ -8,7 +8,9 @@ describe 'navigate' do
 
   describe 'index' do
     before do
+
       visit posts_path
+
     end
 
   	it 'can be reached successfully' do
@@ -24,6 +26,23 @@ describe 'navigate' do
       post2 = FactoryBot.build_stubbed(:second_post)
       visit posts_path
       expect(page).to have_content(/Rationale|content/)
+    end
+  end
+  describe "new" do
+    it "has a link from the home page" do
+      visit root_path
+
+      click_link("new_post_from_nav")
+      expect(page.status_code).to eq(200)
+    end
+  end
+
+  describe "delete" do
+    it "can be deleted" do
+      @post = FactoryBot.create(:post)
+      visit posts_path
+      click_link("delete_post_#{@post.id}_from_index")
+      expect(page.status_code).to eq(200)
     end
   end
 
